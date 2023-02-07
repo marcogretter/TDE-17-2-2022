@@ -1,2 +1,2 @@
 # TDE-17-2-2022
-Gli esercizi di SQL NON SONO VERIFICATI, GLI ALTRI SONO STATI VERIFICATI ESEGUENDO IL PROGRAMMA.
+Gli esercizi di SQL non sono stati verificati, mentre gli altri sono stati verificati eseguendoli.
