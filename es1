@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<string.h>
+#define N 20
+
+typedef struct{
+char nome[N];
+int pop;
+}Popolo;
+
+typedef struct{
+    int MagPop;
+    int casMagPop;
+    int casMediaPop;
+    int MediaPop;
+} utileFunz;;
+
+utileFunz analizzaPopoli(Popolo popol[],utileFunz ut);
+float calcMedia(Popolo ind[]);
+float valAss(int a);
+
+int main()
+{
+Popolo indiani[5];
+// TODO aggiungere dichiarazione variabili aggiuntive
+    utileFunz funz;
+strcpy(indiani[0].nome, "Cayuga");
+indiani[0].pop = 652;
+strcpy(indiani[1].nome, "Oneida");
+indiani[1].pop = 2123;
+strcpy(indiani[2].nome, "Seneca");
+indiani[2].pop = 3521;
+strcpy(indiani[3].nome, "Onondaga");
+indiani[3].pop = 1763;
+strcpy(indiani[4].nome, "Mohawak");
+indiani[4].pop = 4512;
+// TODO Invoca la funzione
+    funz=analizzaPopoli(indiani, funz);
+// TODO stampa i nomi dei popoli come richiesto
+    printf("La popolazione con più abitanti è %s con %d abitanti, mentre la popolazione con la popolazione più vicina alla media è %s con %d abitanti.\n",indiani[funz.casMagPop].nome,indiani[funz.casMagPop].pop,indiani[funz.casMediaPop].nome,indiani[funz.casMediaPop].pop);
+return 0;
+}
+utileFunz analizzaPopoli(Popolo popol[],utileFunz ut)
+{
+    int i,tmpMaxI=0;
+    int difTmp;
+    int tmpMaxpop=0,vero=1,veroMed=1;
+    for (i=0; i<5; i++) {
+        if(vero==1){
+            ut.MagPop=popol[i].pop;
+            ut.casMagPop=i;
+            vero=3;
+        }
+        if(tmpMaxpop<=popol[i].pop&&vero!=1){
+            ut.MagPop=popol[i].pop;
+            ut.casMagPop=i;
+        }
+    }
+    for (i=0; i<5; i++) {
+        difTmp=popol[i].pop-calcMedia(popol);
+        difTmp=valAss(difTmp);
+        if(i==0){
+            ut.MediaPop=difTmp;
+            ut.casMediaPop=0;
+        }
+        else
+            if (ut.MediaPop>=difTmp){
+                ut.MediaPop=difTmp;
+                ut.casMediaPop=i;
+        }
+    }
+    return ut;
+}
+float calcMedia(Popolo ind[])
+{
+    int i,sum=0,cont=0;
+    for (i=0; i<5; i++) {
+        sum+=ind[i].pop;
+        cont++;
+    }
+    return sum/cont;
+}
+float valAss(int a)
+{
+    if(a<0)
+        return (-1)*a;
+    return a;
+}
